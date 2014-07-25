@@ -2,3 +2,5 @@
   由于Apple从OSX 10.5开始移除了X11的支持，为了继续运行X11程序，
   Apple搞了一个开源项目XQuartz来继续提供X11的支持。
   从官方网站https://xquartz.macosforge.org下载
+* Mac Os 终端显示中文
+  在相应终端的配置文件中，添加如下语句： export LANG=zh_CN.UTF-8
