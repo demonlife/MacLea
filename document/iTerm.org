@@ -1,0 +1,22 @@
+* iTerm的高级特性
+  http://www.zhangzhibo.net/2013/05/22/iterm-%E5%A5%BD%E7%94%A8%E5%9C%A8%E5%93%AA%E5%84%BF/
+** Mouseless Copy
+   cmd-f --> tab #在iterm界面中查找, 输入要查找的字符后, 按下tab键会自动补充后面的内容
+** Split Panes
+   cmd-d: 垂直分屏, cmd-shitf-d:水平分屏
+** system wide hotkey
+   preferences -> keys. Enable "show/hide iTerm2 with a system-wide hotkey"
+** save mark/jump to mark
+   cmd-shitf-M / cmd-shift-J
+** autocomplete
+   cmd + ;
+** paste history
+   cmd-shitf-H
+** instant replay
+   cmd-opt-B / ESC(退出该模式)
+** full screen
+   cmd-enter
+** expose tabs
+   cmd-opt-E   
+** appearance
+   https://github.com/mbadolato/iTerm2-Color-Schemes

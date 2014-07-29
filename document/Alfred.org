@@ -1,0 +1,26 @@
+* 使用 Alfred Workflow 制作日文单词翻译器
+  http://jianshu.io/p/eea2cdabdc95
+** 制作流程如下
+   1. 新建workflow
+      进入workflow页中, 点击左边下方的+号, 选择blank workflow
+   2. 填写workflow信息
+      信息可以随便填写, 填写完之后, 选择创建按钮即可
+   3. 进入刚刚建立的workflow中, 点击右上方的+号, 选择inputs -> script Filter后
+      会在该workflow中创建一个小方块, 双击该方块则会弹出一个页面, 下面对该页面的选项进行说明
+      keyword:激活某个 Workflow 的关键词，输入之后加参数即可完成整套动作。
+              勾选后面的“with space”并在下拉框选择“Argument Required”代表必须附带参数
+      place holder title:输入关键词后出现的标题，告知用户现已启用的 Workflow
+      place holder subtext:附带字符串，随便说点什么
+      "please wait" subtext:执行命令时（例如从网络获取数据时）显示的文字
+      Language:选择的编程语言
+      Escaping:不需改动
+      之后就可以在script中输入需要执行的代码, 如果需要引用其他的文件, 则该文件的存放路径可以
+      通过如下方法来取得:
+          点击“open workflow folder", 之后会弹出一个对话框, 通过该对话框可以确定弹出的文件夹的
+          具体路径, 之后通过terminal进入该路径, 创建需要引用的文件即可
+      之后点击保存
+   4. 返回编辑区, 点击右上角的+号, 选择 actions->open url, 也会生成一个小方块, 双击该方块,
+      在弹出窗口的url中填入{query}, 保存. 之后将编辑区出现的两个模块拖动连接起来即可, 至此
+      整个过程完毕
+      
+      
