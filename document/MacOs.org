@@ -1,6 +1,142 @@
-* MacOS
+* Mac 安装软件
+** 安装brew
+   http://blog.devtang.com/blog/2014/02/26/the-introduction-of-homebrew-and-brewcask/
+   安装homebrew
+   ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+   之后执行brew doctor查看homebrew的环境是否正常
+   此时一般需要安装command line tools: xcode-select --install
+   brew doctor命令可以多多使用
+*** homebrew-cask 一键安装应用
+    cask的安装: brew tap phinze/homebrew-cask && brew install brew-cask
+    brew cask search: 列出所有可以安装的软件
+    brew cask search xx: 查找所有和xx相关的应用
+    brew cask info xx: 查看xx应用的信息
+    brew cask uninstall xx: 卸载xx
+*** launchrocket
+    该软件是一个管理brew安装的service的工具, 安装之后可以看到所有service的运行状态
+    安装方法: brew tap jimbojsb/launchrocket && brew cask install launchrocket
+** Mac 下安装各个版本的IE浏览器
+   网址: loc.modern.ie
+* MacOS 扩展
   由于Apple从OSX 10.5开始移除了X11的支持，为了继续运行X11程序，
   Apple搞了一个开源项目XQuartz来继续提供X11的支持。
   从官方网站https://xquartz.macosforge.org下载
-* Mac Os 终端显示中文
-  在相应终端的配置文件中，添加如下语句： export LANG=zh_CN.UTF-8
+* Mac 遇到的问题
+** Mac Os 终端显示中文
+   在相应终端的配置文件中，添加如下语句： export LANG=zh_CN.UTF-8
+* Mac terminal中使用GUI EMACS
+  方法1：修改.bash_profile, 在该文件中添加如下代码
+  alias em="open -a /Application/Emacs.app/Contents/MacOS/Emacs $@"
+  方法2：新建一个文件, touch ~/.startemacs,并添加如下内容
+  #!/bin/zsh
+  /Application/Emacs.app/Contents/MacOS/Emacs "$@"
+  之后在相应的终端的配置文件中添加如下内容：
+  alias emacs="~/.startemacs $@"
+* 制作Mac OS X Mavericks 10.9安装U盘
+** 下载系统镜像文件
+   可以上百度盘里搜索
+** 制作
+   1. 准备一个不少于8G的U盘, 打开磁盘工具选择U盘, 抹掉改磁盘的数据,格式为Mac OS扩展,
+   名称输入Mavericks(接下来的命令会用到改名称)
+   2. 数据抹掉之后, 打开终端, 在终端中执行命令
+      sudo /Volumes/Mac_MavericksName/Install OS X Mavericks.app/Contents/Resources/createinstallmedia
+      -- volume /Volumes/Mavericks(刚刚命令的U盘名称) --applicatioinpath /Volumes/Mac_MavericksName/Install OS X Mavericks.app --nointeraction
+   3. 等待安装完成即可
+** 安装
+   插上U盘, 按住option(alt)键开机, 成功进入启动位置选择界面后即可放开Option键, 用键盘选择安装U盘,
+   按return按钮进入安装程序
+* Mac 编译安装boost
+** 编译过程
+   下载源码, 解压源码
+   执行./bootstrap.sh
+   ./b2 --install
+   安装完成之后, 会输出如下类似的提示:
+   the following directory should be added to compiler include path:
+   /Users/qy39/thirdsoft/boost_1_55_0
+   the following directory should be added to compiler linker library path:
+   /Users/qy39/thirdsoft/boost_1_55_0/stage/lib
+** 使用
+   在Xcode中新建一个控制台应用程序
+   修改工程的Search Paths
+   在Header search paths和Library Search paths中分别添加上述的值
+   之后就可以使用了
+* Mac 编译安装qemu
+** 编译过程
+   1. 执行./configure
+      提示pkg-config 需要安装, 安装pkg-config, brew install pkgconfig
+   2. 再次执行./configure
+      提示glib, gthread需要提前安装, 安装glib, brew install glib
+   3. 再次执行./configure
+      报pixman not present, 安装pixman, brew install pixman
+   4. 再次执行./configure 
+      报DTC not present, 安装DTC, brew install DTC
+   5. 再次执行./configure
+      顺利通过
+   6. make
+   7. make install
+* XCode 使用技巧
+  XCode5重新打开欢迎界面: shitf + command + 1，调出欢迎界面, 然后勾选显示即可
+** XCode快捷键修改
+   打开XCode的Preferences设置(在File菜单中),选择快捷键绑定页-->自定义，此时会发现Code Pilot的快捷键, 修改即可
+** XCode插件
+   http://iosdeveloper.diandian.com/post/2013-09-22/40053447971
+*** 使用Alcatraz管理Xcode插件
+    http://blog.devtang.com/blog/2014/03/05/use-alcatraz-to-manage-xcode-plugins/
+    安装: mkdir -p ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins
+    curl -l http://git.io/lOQWeA | tar xvz -C ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins
+    删除: rm -rf ~/Library/Application\ Support/Developer/Shared/Xcode/Plug-ins/Alcatraz.xcplugin
+    rm -rf ~/Library/Application\ Support/Alcatraz
+    使用:
+    重启Xcode, 在window菜单栏中选择Package Manager即可启动插件列表
+    对于想安装的插件, 点击其左边的图标即可下载安装
+    安装完成以后, 再次点击插件左边的图标, 可以将该插件删除
+    Xcode所有的插件都安装在目录:
+    ~/Library/Application Support/Developer/Shared/Xcode/Plug-ins, 因此删除插件时,
+    可以切换到该目录下, 然后删除相应的文件即可
+*** XVim
+    下载地址: https://github.com/JugglerShu/XVim
+*** CodePilot
+    下载地址: https://github.com/macoscope/CodePilot
+    编译安装后,默认的快捷键是shitf+command+x，如果此时安装了xvim则需要修改快捷键
+    在编译时，选择build package 可能编译不通过, 此时可以选择另一种编译方式，
+    编译通过之后将~/Library/Developer/Xcode/DerivedData/CodePilot-*/Build/Products/Debug
+    中的CodePilot*文件夹拷贝到~/Library/Application Support/Developer/Shared/Xcode/Plug-ins
+** 清除掉启动页显示的项目
+   点击xcode的菜单栏的“File”菜单，然后选择 Open Recent ，然后就能看到Clear Menu了
+** XCode 编译安装软件错误解决
+*** x11
+    安装xcode-select --install
+* Mac 使用技巧
+** 将终端命令行结果输出到GUI程序中
+   在mac中使用open命令可以在GUI应用程序中打开文件. 如open filename.txt可以用文本编辑器
+   打开文件
+   使用-f可以让open通过管道来传输输出结果. 如: ls -la | open -f
+   输出结果到特定的应用程序中: ls -la | open -f -a TextEdit
+   输出结果到剪切板: ls -la | pbcopy
+   也可直接输入需要的文字到剪切板: pbcopy,回车,输入想放入剪切板的内容,然后ctrl+d结束输入
+   直接输入文字到"查找"剪切板: echo "search phrase" | pbcopy -pboard find,对bash的yank有效
+   将剪切板中的内容写入一个新的文档中: pbpaste > textfile.txt, 文本格式无法保留
+   将查找剪切板的内容写入一个文档中: pbpast -pboard find  > textfile.txt
+** Fusion Drive
+   将一块ssd与一块普通硬盘合起来作为一个逻辑卷来使用, 用户看到的是一块硬盘,其容量是两块硬盘
+   之和,而OSX系统会动态的在两块物理硬盘之间移动数据,使得系统启动和平时经常使用的文件放在ssd中
+   而将其他较大的不经常使用的文件放在普通硬盘中,以实现性能的最优化
+** 软件推荐
+   Scrivener: 是论文/小说/剧本/教程/翻译/回忆录等等创作型和生产型的专业软件
+   Alfred: mac下一个很强大的工作流软件, 该软件有收费和免费版本, 只有收费版本才支持工作流功能,
+   但是该软件的破解版本在我自己的百度云中
+** Alfred使用方法
+   http://cinvro.com/post/creating-alfred-workflow/
+   http://www.zhihu.com/question/22301362
+   alfred工作流集: http://www.alfredworkflow.com/
+** 常用快捷键
+   option+command+v: 移动某个文件
+** 创建右键打开Shell的功能
+   1. 打开Automator, 新建一个工作流程, 类型选择"服务"
+   2. 在右侧视图上方, 设置为选定"文件夹"和位于"Finder"
+   3. 在搜索框中搜索open, 选择open finder items, 然后拖拽到右边的框中
+   4. 设置打开方式, 选定终端
+   5. 保存, 保存名为"打开终端", 保存点击运行按钮, 之后就可以在右键菜单中看到该选项
+** 显示/隐藏文件
+   显示隐藏文件:defaults write com.apple.finder AppleShowAllFiles -bool true
+   隐藏文件: defaults write com.apple.finder AppleShowAllFiles -bool false 
