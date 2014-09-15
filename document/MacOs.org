@@ -40,7 +40,7 @@
    名称输入Mavericks(接下来的命令会用到改名称)
    2. 数据抹掉之后, 打开终端, 在终端中执行命令
       sudo /Volumes/Mac_MavericksName/Install OS X Mavericks.app/Contents/Resources/createinstallmedia
-      -- volume /Volumes/Mavericks(刚刚命令的U盘名称) --applicatioinpath /Volumes/Mac_MavericksName/Install OS X Mavericks.app --nointeraction
+      --volume /Volumes/Mavericks(刚刚命令的U盘名称) --applicationpath /Volumes/Mac_MavericksName/Install OS X Mavericks.app --nointeraction
    3. 等待安装完成即可
 ** 安装
    插上U盘, 按住option(alt)键开机, 成功进入启动位置选择界面后即可放开Option键, 用键盘选择安装U盘,
@@ -140,3 +140,5 @@
 ** 显示/隐藏文件
    显示隐藏文件:defaults write com.apple.finder AppleShowAllFiles -bool true
    隐藏文件: defaults write com.apple.finder AppleShowAllFiles -bool false 
+* Macbook Air安装windows系统遇到的问题
+  http://www.macx.cn/thread-2098963-1-1.html
